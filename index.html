@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="真理大學碳盤查實務與證照培訓計畫（115 年度）— 以真理大學台北校區為場域，完成 114 年度溫室氣體盤查，培育可對外提供盤查服務的專業團隊。">
+<title>這一次，我們盤查自己 — 真理大學碳盤查實務與證照培訓計畫</title>
+<style>
+/* ═══════════════════════════════════════════
+   設計語彙 — 參考 104 HRMax ESG
+   青綠 #38C2AB ／ 黃綠 #6FBA10 漸層主視覺
+   ═══════════════════════════════════════════ */
+:root {
+  /* 品牌色 */
+  --teal:        #38C2AB;
+  --teal-deep:   #29C5B2;
+  --teal-dark:   #1FA893;
+  --green:       #6FBA10;
+  --green-light: #73D550;
+  --grad:        linear-gradient(90deg, #29C5B2 0%, #6FBA10 100%);
+  --grad-soft:   linear-gradient(100deg, #29C5B2 17%, #1CC57E 127%);
+
+  /* 文字 */
+  --ink:   #292929;
+  --gray:  #4F5852;
+  --gray2: #697268;
+
+  /* 底色 */
+  --mint:  #F6FFF0;
+  --bg:    #F8F8F8;
+  --white: #FFFFFF;
+
+  /* 狀態 */
+  --error: #EA475B;
+  --warn:  #FF7800;
+
+  --border: #E8EDE8;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 0 30px rgba(0,0,0,.08);
+  --shadow-hover: 0 12px 40px rgba(41,197,178,.18);
+  --max: 1200px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* 基準字級：讓所有 rem 值整體放大（16px → 18px，約 +12.5%） */
+html { scroll-behavior: smooth; font-size: 18px; }
+
+body {
+  font-family: "Inter", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.75;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 共用容器 ── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+/* ── 按鈕 ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px 36px;
+  border-radius: 8px;
+  font-size: 1rem; font-weight: 700; letter-spacing: .3px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn-grad {
+  background: var(--grad); color: #fff;
+  box-shadow: 0 6px 18px rgba(41,197,178,.28);
+}
+.btn-grad:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(41,197,178,.4); }
+.btn-ghost {
+  background: #fff; color: var(--teal-dark);
+  border: 2px solid var(--teal);
+}
+.btn-ghost:hover { background: var(--mint); transform: translateY(-2px); }
+
+/* ═══ 導航列 ═══ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow .3s;
+}
+.nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+.nav-in {
+  max-width: var(--max); margin: 0 auto; padding: 0 24px;
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 800; color: var(--ink); font-size: 1.05rem;
+  white-space: nowrap; flex-shrink: 0;
+}
+.brand .brand-sub { font-weight: 500; color: var(--gray); font-size: .95rem; white-space: nowrap; }
+.brand-mark {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .95rem; flex-shrink: 0;
+}
+.nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--gray); font-size: .95rem; font-weight: 500;
+  transition: color .2s; position: relative; padding: 4px 0; white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--teal-dark); }
+.nav-links a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--grad); border-radius: 2px;
+}
+.nav-links.mobile-cta { display: none; }
+.nav-cta {
+  padding: 10px 22px !important; border-radius: 8px;
+  background: var(--grad); color: #fff !important; font-weight: 700 !important;
+}
+
+/* ═══ Hero ═══ */
+.hero {
+  background: linear-gradient(180deg, #F6FFF0 0%, #F6FFF0 72%, #FFFFFF 100%);
+  padding: 72px 0 80px;
+  overflow: hidden; position: relative;
+}
+.hero-in {
+  max-width: var(--max); margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid #D6F0E6;
+  color: var(--teal-dark); font-size: 1rem; font-weight: 700;
+  padding: 7px 18px; border-radius: 50px; margin-bottom: 22px;
+  box-shadow: 0 2px 10px rgba(41,197,178,.1);
+}
+.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.hero h1 {
+  font-size: 3rem; font-weight: 800; line-height: 1.22;
+  letter-spacing: -.5px; margin-bottom: 18px;
+}
+.hero h1 .hl {
+  background: var(--grad); -webkit-background-clip: text;
+  background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero .lead {
+  font-size: 1.22rem; color: var(--gray); line-height: 1.85;
+  margin-bottom: 32px; max-width: 500px;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-deadline {
+  margin-top: 16px; font-size: 1.05rem; color: var(--gray);
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px;
+  background: #fff; border: 1px solid #D6F0E6;
+  padding: 9px 18px; border-radius: 50px;
+  box-shadow: 0 2px 10px rgba(41,197,178,.1);
+  white-space: nowrap;
+}
+.hero-deadline strong { color: var(--teal-dark); font-weight: 800; }
+.hero-note {
+  margin-top: 14px; font-size: 1.05rem; color: var(--gray);
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 8px 0;
+}
+.hero-note .hn {
+  white-space: nowrap; display: inline-flex; align-items: center;
+}
+.hero-note .hn + .hn::before {
+  content: ""; display: inline-block;
+  width: 1px; height: 1em; background: #C9D4C9;
+  margin: 0 14px; flex-shrink: 0;
+}
+.hero-note .hn:last-child { font-weight: 600; color: var(--teal-dark); }
+
+/* Hero 視覺 */
+.hero-art { position: relative; display: flex; justify-content: center; align-items: center; min-height: 380px; }
+.hero-art svg.globe { width: 100%; max-width: 340px; animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+.chip {
+  position: absolute; background: #fff; border-radius: 12px;
+  padding: 12px 16px; box-shadow: 0 8px 28px rgba(0,0,0,.1);
+  display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 700;
+  white-space: nowrap;
+}
+.chip .ic { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+.chip small { display: block; font-size: .98rem; font-weight: 500; color: var(--gray); }
+.chip-1 { top: 8%; left: -4%; animation: float 5s ease-in-out infinite .4s; }
+.chip-2 { top: 44%; right: -6%; animation: float 5.5s ease-in-out infinite .9s; }
+.chip-3 { bottom: 6%; left: 6%; animation: float 6.5s ease-in-out infinite .2s; }
+
+/* ── 區塊通用 ── */
+.sec { padding: 80px 0; }
+.sec.mint { background: var(--mint); }
+.sec-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.sec-label {
+  display: inline-block; font-size: .95rem; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 12px;
+}
+.sec-title { font-size: 2.3rem; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 14px; }
+.sec-desc {
+  font-size: 1.1rem; color: var(--gray);
+  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+/* ═══ 目標卡片 ═══ */
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.card {
+  background: #fff; border-radius: var(--radius); padding: 32px 26px;
+  box-shadow: var(--shadow); border: 1px solid transparent;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: #D6F0E6; }
+.card .ic {
+  width: 52px; height: 52px; border-radius: 14px; margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  background: var(--mint);
+}
+.card h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.card p { font-size: 1rem; color: var(--gray); line-height: 1.8; text-wrap: pretty; }
+.grid-5 .card { padding: 26px 20px; }
+.grid-5 .card .ic { width: 46px; height: 46px; font-size: 1.35rem; margin-bottom: 14px; }
+.grid-5 .card h3 { font-size: 1.02rem; }
+.grid-5 .card p { font-size: .95rem; }
+
+/* ═══ 雙軌架構 ═══ */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.track {
+  background: #fff; border-radius: var(--radius-lg); padding: 36px 32px;
+  box-shadow: var(--shadow); position: relative; overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.track:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.track::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+}
+.track.t1::before { background: var(--grad-soft); }
+.track.t2::before { background: linear-gradient(100deg, #6FBA10 0%, #A8D93B 100%); }
+.track .tag {
+  display: inline-block; font-size: .95rem; font-weight: 800; letter-spacing: 1.2px;
+  padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+}
+.track.t1 .tag { background: #E4F8F4; color: var(--teal-dark); }
+.track.t2 .tag { background: #F1FAE3; color: #5A9B0C; }
+.track h3 { font-size: 1.38rem; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+.track p { font-size: 1.02rem; color: var(--gray); line-height: 1.85; text-wrap: pretty; }
+.track dl {
+  margin-top: 22px; padding-top: 20px; border-top: 1px dashed var(--border);
+  display: grid; gap: 10px; font-size: 1.05rem;
+}
+.track dl div { display: flex; gap: 10px; }
+.track dt { color: var(--gray); min-width: 96px; }
+.track dd { color: var(--ink); font-weight: 600; }
+
+/* ═══ 重要日程（時間軸） ═══ */
+.timeline { max-width: 800px; margin: 0 auto; position: relative; padding-left: 8px; }
+.timeline::before {
+  content: ""; position: absolute; left: 116px; top: 12px; bottom: 12px;
+  width: 2px; background: linear-gradient(180deg, var(--teal), var(--green));
+  opacity: .35;
+}
+.tl-item { display: grid; grid-template-columns: 108px 1fr; gap: 32px; align-items: start; }
+.tl-item:not(:last-child) { margin-bottom: 32px; }
+.tl-date { text-align: right; padding-top: 2px; }
+.tl-date .tl-md {
+  display: block; font-size: 1.5rem; font-weight: 800;
+  color: var(--teal-dark); line-height: 1.2; letter-spacing: -.5px;
+}
+.tl-date .tl-y { display: block; font-size: 1rem; color: var(--gray); font-weight: 600; }
+.tl-body {
+  position: relative; background: #fff; border-radius: var(--radius);
+  padding: 22px 26px; box-shadow: var(--shadow);
+  border-left: 4px solid var(--teal);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.tl-body:hover { transform: translateX(4px); box-shadow: var(--shadow-hover); }
+.tl-dot {
+  position: absolute; left: -38px; top: 28px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 4px solid var(--teal);
+  box-shadow: 0 0 0 4px rgba(56,194,171,.15);
+}
+.tl-body h3 {
+  font-size: 1.2rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.tl-note {
+  font-size: .95rem; font-weight: 700; color: var(--teal-dark);
+  background: #E4F8F4; padding: 3px 12px; border-radius: 50px;
+}
+.tl-body p { font-size: 1.02rem; color: var(--gray); line-height: 1.8; text-wrap: pretty; }
+
+@media (max-width: 600px) {
+  .timeline::before { left: 7px; }
+  .tl-item { grid-template-columns: 1fr; gap: 10px; padding-left: 34px; }
+  .tl-date { text-align: left; display: flex; align-items: baseline; gap: 8px; }
+  .tl-date .tl-md { font-size: 1.3rem; }
+  .tl-date .tl-y { font-size: .95rem; }
+  .tl-dot { left: -34px; top: 24px; }
+  .tl-body { padding: 18px 20px; }
+  .tl-body h3 { font-size: 1.1rem; }
+}
+
+/* ═══ 證照補助 ═══ */
+.price-wrap { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+table.price { width: 100%; border-collapse: collapse; }
+table.price th, table.price td { padding: 22px 24px; text-align: center; font-size: 1.02rem; }
+table.price thead th {
+  background: var(--grad-soft); color: #fff; font-weight: 700;
+  font-size: 1rem; letter-spacing: .5px;
+}
+table.price thead th:first-child { text-align: left; }
+table.price tbody td:first-child { text-align: left; font-weight: 700; color: var(--ink); font-size: 1.02rem; }
+table.price tbody tr:nth-child(even) { background: var(--mint); }
+table.price tbody tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+table.price tbody tr:hover { background: #F0FBF6; }
+table.price small {
+  display: block; font-size: 1rem !important;
+  color: var(--gray) !important; font-weight: 500 !important;
+  margin-top: 3px; line-height: 1.5;
+}
+.p-free { color: var(--teal-dark); font-weight: 800; font-size: 1.1rem; }
+.p-paid { color: var(--ink); font-weight: 700; font-size: 1.1rem; }
+.price-note { margin-top: 22px; font-size: 1.05rem; color: var(--gray); text-align: center; line-height: 2; }
+
+/* ═══ 實質效益與優勢 ═══ */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.benefit { background: #fff; border-radius: var(--radius); padding: 32px 24px; text-align: left; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; border: 1px solid transparent; }
+.benefit:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: #D6F0E6; }
+.benefit .bi { width: 52px; height: 52px; border-radius: 14px; background: var(--mint); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 18px; }
+.benefit h4 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.benefit p { font-size: 1.02rem; color: var(--gray); line-height: 1.8; text-wrap: pretty; }
+
+.teacher {
+  margin-top: 24px; background: #fff; border-radius: var(--radius-lg);
+  padding: 28px 32px; display: flex; align-items: center; gap: 20px;
+  border-left: 5px solid var(--green); box-shadow: var(--shadow);
+}
+.teacher .ti {
+  width: 54px; height: 54px; border-radius: 50%; background: #F1FAE3;
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+}
+.teacher h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.teacher p { font-size: 1rem; color: var(--gray); line-height: 1.8; }
+
+/* 學校層面效益 */
+.school {
+  margin-top: 24px; background: #fff; border-radius: var(--radius-lg);
+  padding: 32px 36px; box-shadow: var(--shadow);
+  display: flex; gap: 24px; align-items: flex-start;
+  border-left: 5px solid var(--teal);
+}
+.school .sc-ic {
+  width: 60px; height: 60px; border-radius: 16px; background: var(--mint);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; flex-shrink: 0;
+}
+.school .sc-text { flex: 1; min-width: 0; }
+.school h3 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.school p { font-size: 1.02rem; color: var(--gray); line-height: 1.85; text-wrap: pretty; }
+.sc-list { list-style: none; margin-top: 16px; display: grid; gap: 9px; }
+.sc-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 1rem; color: var(--ink); font-weight: 500;
+}
+.sc-list li span {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: var(--grad); color: #fff; font-size: .72rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .school { flex-direction: column; gap: 16px; padding: 26px 22px; }
+  .school .sc-ic { width: 52px; height: 52px; font-size: 1.5rem; }
+}
+
+/* ═══ FAQ ═══ */
+.faq-list { display: flex; flex-direction: column; gap: 18px; max-width: 960px; margin: 0 auto; }
+.faq-item {
+  background: #fff; border-radius: var(--radius); padding: 22px 26px;
+  box-shadow: var(--shadow); transition: box-shadow .25s ease;
+}
+.faq-item:hover { box-shadow: 0 6px 34px rgba(41,197,178,.15); }
+.faq-q {
+  display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none;
+  font-size: 1.15rem; font-weight: 700; color: var(--ink);
+}
+.faq-q .qn { color: var(--teal); font-family: Arial, sans-serif; font-weight: 700; flex-shrink: 0; }
+.faq-q .fold {
+  margin-left: auto; width: 22px; height: 22px; flex-shrink: 0;
+  color: var(--teal); transition: transform .28s ease;
+  display: flex; align-items: center; justify-content: center;
+}
+.faq-item.open .faq-q .fold { transform: rotate(90deg); }
+.faq-a { display: none; padding: 14px 0 0 30px; font-size: 1.02rem; color: var(--gray); line-height: 1.9; text-wrap: pretty; }
+.faq-item.open .faq-a { display: block; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ═══ CTA ═══ */
+.cta {
+  background: var(--grad-soft); color: #fff; text-align: center; padding: 80px 24px;
+  position: relative; overflow: hidden;
+}
+.cta::before, .cta::after {
+  content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07);
+}
+.cta::before { width: 300px; height: 300px; top: -120px; right: -60px; }
+.cta::after { width: 220px; height: 220px; bottom: -100px; left: -40px; }
+.cta h2 { font-size: 2.15rem; font-weight: 800; margin-bottom: 12px; position: relative; }
+.cta p { font-size: 1.1rem; opacity: .95; margin-bottom: 32px; position: relative; }
+.cta .btn { position: relative; background: #fff; color: var(--teal-dark); }
+.cta .btn:hover { box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.cta-deadline {
+  margin-top: 18px; font-size: 1.05rem; opacity: .95;
+  display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35);
+  padding: 9px 20px; border-radius: 50px; position: relative;
+  white-space: nowrap;
+}
+.cta-deadline strong { color: #fff; font-weight: 800; }
+
+/* ═══ Footer ═══ */
+.footer { background: #1E2A26; color: rgba(255,255,255,.78); padding: 44px 24px 32px; font-size: 1.02rem; }
+.footer-in { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.footer strong { color: #fff; }
+.footer .fbrand { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.15rem; font-weight: 700; color: #fff; }
+.footer .fbrand .brand-mark { width: 30px; height: 30px; font-size: .85rem; }
+.footer .flinks { display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start; }
+.footer .flinks a { color: rgba(255,255,255,.78); text-decoration: none; transition: color .2s; }
+.footer .flinks a:hover { color: var(--teal); }
+.footer .forg {
+  margin-top: 12px; font-size: 1.02rem;
+  color: rgba(255,255,255,.72); line-height: 1.8;
+}
+.footer .fmeta {
+  margin-top: 10px; color: rgba(255,255,255,.78);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0;
+}
+.footer .fmeta .fx, .footer-bottom .fx { white-space: nowrap; }
+.footer .fmeta .fx + .fx::before,
+.footer-bottom .fx + .fx::before {
+  content: "｜"; margin: 0 6px; color: rgba(255,255,255,.35);
+}
+.footer-bottom {
+  max-width: var(--max); margin: 28px auto 0; padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.14); font-size: 1rem; color: rgba(255,255,255,.62);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0;
+}
+
+/* ═══ 進場動畫 ═══ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ═══ 響應式 ═══ */
+@media (max-width: 1024px) {
+  .brand .brand-sub { display: none; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: .92rem; }
+  .nav-cta { padding: 9px 18px !important; }
+}
+@media (max-width: 1100px) {
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 980px) {
+  .hero-in { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .hero .lead { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-deadline { justify-content: center; }
+  .hero-note { justify-content: center; }
+  .hero-art { min-height: 300px; order: -1; }
+  .chip-1 { left: 0; } .chip-2 { right: 0; } .chip-3 { left: 10%; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .nav-links:not(.mobile-cta) { display: none; }
+  .nav-links.mobile-cta { display: flex; }
+  .brand .brand-sub { display: inline; }
+}
+@media (max-width: 760px) {
+  .brand .brand-sub { display: none; }
+  .nav-in { height: 64px; }
+  .hero { padding: 40px 0 72px; }
+  .hero h1 { font-size: 2.15rem; }
+  .hero .lead { font-size: 1.08rem; }
+  .sec { padding: 56px 0; }
+  .sec-title { font-size: 1.7rem; }
+  .grid-2 { grid-template-columns: 1fr; }
+  table.price th, table.price td { padding: 14px 10px; font-size: 1rem; }
+  table.price small { font-size: .95rem !important; }
+  .teacher { flex-direction: column; text-align: center; border-left: none; border-top: 5px solid var(--green); }
+  .footer-in { flex-direction: column; }
+  .cta h2 { font-size: 1.6rem; }
+}
+@media (max-width: 460px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .grid-5 { grid-template-columns: 1fr; }
+}
+
+/* ═══ 互動式計價計算器 ═══ */
+.calc-wrap { max-width: 720px; margin: 0 auto; }
+.calc-card {
+  background: #fff; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); padding: 40px 44px;
+}
+.calc-step { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px dashed var(--border); }
+.calc-step:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.step-label {
+  display: inline-block; font-size: .95rem; font-weight: 800; letter-spacing: 1.2px;
+  color: var(--teal); margin-bottom: 8px; text-transform: uppercase;
+}
+.calc-step h3 { font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 18px; }
+.calc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.calc-opt {
+  position: relative; border: 1.5px solid #E2E8E2; border-radius: 8px;
+  padding: 16px 18px 16px 46px; cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; font-size: 1.02rem; font-weight: 600; color: var(--ink);
+}
+.calc-opt:hover { border-color: #A8DFD2; background: #FAFFFC; }
+.calc-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.calc-opt .opt-mark {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border: 2px solid #C9D4C9; border-radius: 50%;
+  transition: all .2s;
+}
+.calc-opt input:checked ~ .opt-mark { border-color: var(--teal); border-width: 5px; }
+.calc-opt:has(input:checked) { border-color: var(--teal); background: var(--mint); }
+
+.calc-result {
+  margin-top: 32px; padding: 28px 32px; border-radius: var(--radius);
+  background: var(--grad-soft); color: #fff; text-align: center;
+}
+.calc-result .result-label { font-size: 1rem; font-weight: 700; letter-spacing: 1.5px; opacity: .95; margin-bottom: 8px; }
+.calc-result .result-amount { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+.calc-result .result-amount.free { color: #D4F7C8; }
+.calc-result .result-detail { font-size: 1.02rem; opacity: .95; line-height: 1.8; }
+
+@media (max-width: 600px) {
+  .calc-card { padding: 28px 22px; }
+  .calc-options { grid-template-columns: 1fr; }
+  .calc-result .result-amount { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ 導航列 ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <div class="brand-mark">🌿</div>
+      真理大學 <span class="brand-sub">碳盤查培訓計畫</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#overview">計畫目標</a></li>
+      <li><a href="#tracks">雙軌架構</a></li>
+      <li><a href="#schedule">重要日程</a></li>
+      <li><a href="#pricing">證照補助</a></li>
+      <li><a href="#calculator">費用試算</a></li>
+      <li><a href="#benefits">實質效益</a></li>
+      <li><a href="#faq">常見問題</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScvyvppaFAF33b6rnO1Gc8GR7LsH6EkjyNx-lSoNVfYPRoGPw/viewform" target="_blank" rel="noopener" class="nav-cta">立即報名</a></li>
+    </ul>
+    <ul class="nav-links mobile-cta">
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScvyvppaFAF33b6rnO1Gc8GR7LsH6EkjyNx-lSoNVfYPRoGPw/viewform" target="_blank" rel="noopener" class="nav-cta">立即報名</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="hero-badge"><span class="dot"></span>115 年度計畫 ｜ 主辦單位：ESG 智慧永續碳權交易研究中心</span>
+      <h1>這一次，<br>我們<span class="hl">盤查自己</span></h1>
+      <p class="lead">
+        配合金管會 2027 年上市櫃公司全面盤查規範，掌握企業炙手可熱的碳會計技能。
+        以真理大學台北校區完成真實盤查，取得專業證照。
+      </p>
+      <div class="hero-cta">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScvyvppaFAF33b6rnO1Gc8GR7LsH6EkjyNx-lSoNVfYPRoGPw/viewform" target="_blank" rel="noopener" class="btn btn-grad">立即報名 →</a>
+        <a href="#benefits" class="btn btn-ghost">了解實質優勢</a>
+      </div>
+      <p class="hero-deadline">🗓 報名截止 <strong>115 年 10 月 10 日</strong>（名額有限，依報名順序安排）</p>
+      <p class="hero-note">
+        <span class="hn">🎓 全校教職員生皆可參加</span>
+        <span class="hn">零基礎可</span>
+      </p>
+    </div>
+
+    <!-- Hero 視覺：碳盤查意象 -->
+    <div class="hero-art">
+      <svg class="globe" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#29C5B2"/><stop offset="100%" stop-color="#6FBA10"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#38C2AB" stop-opacity=".18"/><stop offset="100%" stop-color="#73D550" stop-opacity=".08"/>
+          </linearGradient>
+        </defs>
+        <circle cx="150" cy="150" r="132" stroke="#D6F0E6" stroke-width="1.5" stroke-dasharray="5 7"/>
+        <circle cx="150" cy="150" r="104" fill="url(#g2)"/>
+        <circle cx="150" cy="150" r="88" fill="url(#g1)" opacity=".92"/>
+        <path d="M108 108c14-8 30-6 38 4s-2 24-14 30-30 8-38-2 0-24 14-32z" fill="#fff" opacity=".22"/>
+        <path d="M158 168c16-4 30 4 32 16s-10 22-24 22-24-8-24-18 4-16 16-20z" fill="#fff" opacity=".16"/>
+        <path d="M186 96c12-4 22 4 20 14s-14 16-22 12-8-22 2-26z" fill="#fff" opacity=".14"/>
+        <g opacity=".95">
+          <path d="M150 40c16 12 24 28 24 44 0 12-10 20-24 20s-24-8-24-20c0-16 8-32 24-44z" fill="#73D550"/>
+          <path d="M150 52v48" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+        </g>
+        <circle cx="150" cy="18" r="5" fill="#38C2AB"/>
+        <circle cx="282" cy="150" r="5" fill="#6FBA10"/>
+        <circle cx="150" cy="282" r="5" fill="#29C5B2"/>
+        <circle cx="18" cy="150" r="5" fill="#73D550"/>
+      </svg>
+
+      <div class="chip chip-1">
+        <div class="ic" style="background:#E4F8F4;">📊</div>
+        <div>Scope 1・2・3<small>盤查三大範疇</small></div>
+      </div>
+      <div class="chip chip-2">
+        <div class="ic" style="background:#F1FAE3;">🌍</div>
+        <div>ISO 14064-1<small>國際標準方法學</small></div>
+      </div>
+      <div class="chip chip-3">
+        <div class="ic" style="background:#E4F8F4;">📜</div>
+        <div>專業證照<small>提升職場競爭力</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ 計畫目標 ═══ -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">About</span>
+      <h2 class="sec-title">計畫目標</h2>
+      <p class="sec-desc">
+        以「實作」與「證照」雙軌培訓教職員生具備溫室氣體盤查專業能力，
+        組成種子團隊，並為學校補足溫室氣體排放資訊。
+      </p>
+    </div>
+
+    <div class="grid-5">
+      <div class="card reveal">
+        <div class="ic">🎯</div>
+        <h3>專業能力培育</h3>
+        <p>系統化培訓碳盤查知識與技能，讓參與者能獨立執行盤查作業。</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🏫</div>
+        <h3>校園實作場域</h3>
+        <p>以真理大學台北校區為真實場域，累積可驗證的實務經驗。</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">📜</div>
+        <h3>證照考取</h3>
+        <p>培訓課程搭配證照考試，取得專業認證，提升職場競爭力。</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">👥</div>
+        <h3>團隊組成</h3>
+        <p>培育校園種子團隊，建立長期盤查能量，服務校內外機構。</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🌍</div>
+        <h3>補足資訊缺口</h3>
+        <p>建立完整排放資訊，讓校園碳管理與 ESG 永續向前邁進。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 雙軌架構 ═══ -->
+<section class="sec mint" id="tracks">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Structure</span>
+      <h2 class="sec-title">雙軌培訓架構</h2>
+      <p class="sec-desc">實作與證照並進，讓你同時擁有實戰經驗與專業認證。</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="track t1 reveal">
+        <span class="tag">TRACK 1</span>
+        <h3>實作 — 校園碳盤查</h3>
+        <p>
+          以真理大學台北校區為場域，針對 114 年度資料完成標準盤查流程：
+          資料收集、邊界設定、排放源鑑別，到報告撰寫。
+        </p>
+        <dl>
+          <div><dt>計畫指導兼顧問</dt><dd>丁煌裕 老師</dd></div>
+          <div><dt>啟動會議</dt><dd>115 年 10 月 13 日 13:20–16:00</dd></div>
+          <div><dt>        </dt><dd>管理大樓516教室</dd></div>
+          <div><dt>盤查場域</dt><dd>真理大學台北校區</dd></div>
+          <div><dt>盤查年度</dt><dd>114 年度（2025 年）</dd></div>
+        </dl>
+      </div>
+
+      <div class="track t2 reveal">
+        <span class="tag">TRACK 2</span>
+        <h3>證照 — 培訓與考試</h3>
+        <p>
+          培訓課程涵蓋碳盤查專業知識與考試準備，由淺入深，零基礎可參與。
+          全程參與者，考試費用另享優惠。
+        </p>
+        <dl>
+          <div><dt>培訓與考試</dt><dd>115 年 12 月 5–6 日（暫定）</dd></div>
+          <div><dt>證照名稱</dt><dd>ISO 14064-1 內部查證員</dd></div>
+          <div><dt>參與對象</dt><dd>全校教職員生</dd></div>
+          <div><dt>基礎要求</dt><dd>無，零基礎可參與</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 重要日程 ═══ -->
+<section class="sec" id="schedule">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Schedule</span>
+      <h2 class="sec-title">重要日程</h2>
+      <p class="sec-desc">以下日期暫定，主辦單位保留調整權利，異動將另行通知。</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">
+          <span class="tl-md">10/10</span>
+          <span class="tl-y">115 年</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <h3>報名截止</h3>
+          <p>請於此日前完成線上報名，以利安排課程與名額遴選。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">
+          <span class="tl-md">10/13</span>
+          <span class="tl-y">115 年</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <h3>實作啟動會議 <span class="tl-note">13:20–16:00</span> <span class="tl-note">管理大樓516教室</span></h3>
+          <p>實作團隊啟動，說明盤查範圍、分工與資料收集方式。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">
+          <span class="tl-md">12/5–6</span>
+          <span class="tl-y">115 年</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-dot"></div>
+          <h3>證照培訓與考試 <span class="tl-note">暫定</span></h3>
+          <p>兩日培訓課程與證照考試，全程參與者享報名費優惠。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 證照補助 ═══ -->
+<section class="sec mint" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Subsidy</span>
+      <h2 class="sec-title">證照報名費補助</h2>
+      <p class="sec-desc">本計畫部分經費由深耕計畫補助，學生享 15 個免費補助名額、教職員享優惠證照報名費。</p>
+    </div>
+
+    <div class="price-wrap reveal">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>參與方式</th>
+            <th>學生</th>
+            <th>教職員</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>參加證照培訓與考試<small>+ 參加實作</small></td>
+            <td class="p-free">免費<small>限 15 個名額</small></td>
+            <td class="p-paid">新臺幣 4,000 元</td>
+          </tr>
+          <tr>
+            <td>參加證照培訓與考試<small>+ 不參加實作</small></td>
+            <td class="p-paid">新臺幣 5,000 元</td>
+            <td class="p-paid">新臺幣 7,000 元</td>
+          </tr>
+          <tr>
+            <td>參加證照培訓（不考試）<small>+ 參加實作</small></td>
+            <td class="p-free">免費</td>
+            <td class="p-free">免費</td>
+          </tr>
+          <tr>
+            <td>參加證照培訓（不考試）<small>+ 不參加實作</small></td>
+            <td class="p-free">免費</td>
+            <td class="p-free">免費</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="price-note reveal">
+      ※ 學生免費名額共 15 名，提供給全程參與實作與證照培訓者（依報名順序與參與程度遴選）。<br>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ 互動式計價計算器 ═══ -->
+<section class="sec" id="calculator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Calculator</span>
+      <h2 class="sec-title">費用試算</h2>
+      <p class="sec-desc">選擇您的身分與參與狀況，立即試算所需費用。</p>
+    </div>
+
+    <div class="calc-wrap reveal">
+      <div class="calc-card">
+        <!-- 步驟 1：身分 -->
+        <div class="calc-step">
+          <div class="step-label">步驟 1</div>
+          <h3>您的身分</h3>
+          <div class="calc-options">
+            <label class="calc-opt">
+              <input type="radio" name="calc-role" value="學生">
+              <span class="opt-mark"></span>
+              <span class="opt-text">學生</span>
+            </label>
+            <label class="calc-opt">
+              <input type="radio" name="calc-role" value="教職員">
+              <span class="opt-mark"></span>
+              <span class="opt-text">教職員</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 步驟 2：是否參加考試 -->
+        <div class="calc-step">
+          <div class="step-label">步驟 2</div>
+          <h3>是否參加證照考試？</h3>
+          <div class="calc-options">
+            <label class="calc-opt">
+              <input type="radio" name="calc-exam" value="yes">
+              <span class="opt-mark"></span>
+              <span class="opt-text">是，我要參加考試</span>
+            </label>
+            <label class="calc-opt">
+              <input type="radio" name="calc-exam" value="no">
+              <span class="opt-mark"></span>
+              <span class="opt-text">否，我不參加考試</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 步驟 3：是否參加實作（僅在參加考試時顯示） -->
+        <div class="calc-step" id="calc-practice-step" style="display:none;">
+          <div class="step-label">步驟 3</div>
+          <h3>是否參加實作？</h3>
+          <div class="calc-options">
+            <label class="calc-opt">
+              <input type="radio" name="calc-practice" value="yes">
+              <span class="opt-mark"></span>
+              <span class="opt-text">是，我要參加實作</span>
+            </label>
+            <label class="calc-opt">
+              <input type="radio" name="calc-practice" value="no">
+              <span class="opt-mark"></span>
+              <span class="opt-text">否，我不參加實作</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 結果 -->
+        <div class="calc-result" id="calc-result" style="display:none;">
+          <div class="result-label">試算結果</div>
+          <div class="result-amount" id="result-amount">免費</div>
+          <div class="result-detail" id="result-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 實質效益與優勢 ═══ -->
+<section class="sec mint" id="benefits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Real Value</span>
+      <h2 class="sec-title">這張證照與技能，能為您帶來什麼實質幫助？</h2>
+      <p class="sec-desc">不講空話，從法規剛需、市價成本到履歷實戰，看見看得見的硬實力。</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="benefit reveal">
+        <div class="bi">🏛️</div>
+        <h4>法規剛需：企業搶著要</h4>
+        <p>配合金管會 2027 年上市櫃公司全面盤查規範，各企業正強力招募具備碳盤查能力的專業人才，這是求職與升遷的即戰力硬門票。</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="bi">💰</div>
+        <h4>省下萬元市價培訓費</h4>
+        <p>市面同級 ISO 14064-1 培訓與考證費用高達 1.2 至 1.8 萬元。本計畫由深耕計畫補助，學生享 15 名全額免費，教職員享專案優惠價。</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="bi">📂</div>
+        <h4>真實校園專案經歷</h4>
+        <p>不只是紙上談兵，您將親自參與真理大學台北校區 114 年度真實數據盤查，將扎實的碳會計與報告書編製經驗直接寫進履歷。</p>
+      </div>
+    </div>
+
+    <div class="teacher reveal">
+      <div class="ti">⭐</div>
+      <div>
+        <h3>教師專屬效益 — 專業成長與評鑑採計</h3>
+        <p>依學校相關規定可於教師評鑑中獲得採計，專業成長與評鑑表現雙重助益。</p>
+      </div>
+    </div>
+
+    <!-- 學校層面效益 -->
+    <div class="school reveal">
+      <div class="sc-ic">🌍</div>
+      <div class="sc-text">
+        <h3>學校層面效益 — 補足資訊缺口</h3>
+        <p>建立溫室氣體排放基礎資料，讓校園碳管理與 ESG 永續向前邁進。</p>
+        <ul class="sc-list">
+          <li><span>✓</span>建立校園排放基礎資料</li>
+          <li><span>✓</span>作為減碳目標與成效追蹤依據</li>
+          <li><span>✓</span>強化 ESG 報告數據基礎</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 常見問題 ═══ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">FAQ</span>
+      <h2 class="sec-title">常見問題</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="qn">Q1</span>
+          <span>我沒有相關基礎，可以參加嗎？</span>
+          <span class="fold">▸</span>
+        </div>
+        <div class="faq-a">
+          可以。培訓課程從基礎教起，由淺入深，無相關經驗也能參與。
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="qn">Q2</span>
+          <span>不考證照，可以只參加實作或培訓課程嗎？</span>
+          <span class="fold">▸</span>
+        </div>
+        <div class="faq-a">
+          可以。實作與培訓課程完全免費，僅參與證照考試時才需繳費。
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="qn">Q3</span>
+          <span>學生免費名額有多少？如何決定？</span>
+          <span class="fold">▸</span>
+        </div>
+        <div class="faq-a">
+          共 15 個免費考試名額，提供給全程參與實作與培訓的學生，依報名順序與參與程度遴選。
+          報名截止日為 115 年 10 月 10 日。
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="qn">Q4</span>
+          <span>教師參與本計畫有什麼額外效益？</span>
+          <span class="fold">▸</span>
+        </div>
+        <div class="faq-a">
+          依學校相關規定可於教師評鑑中獲得採計，專業成長與評鑑表現雙重助益。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta">
+  <h2>歡迎加入碳盤查專業培訓行列</h2>
+  <p>掌握 2027 年企業法規剛需，立即報名搶佔專業先機。</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScvyvppaFAF33b6rnO1Gc8GR7LsH6EkjyNx-lSoNVfYPRoGPw/viewform" target="_blank" rel="noopener" class="btn">立即報名 →</a>
+  <p class="cta-deadline">🗓 報名截止：<strong>115 年 10 月 10 日</strong></p>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="footer">
+  <div class="footer-in">
+    <div>
+      <div class="fbrand"><span class="brand-mark">🌿</span>真理大學</div>
+      <div>碳盤查實務與證照培訓計畫</div>
+      <div class="forg">
+        主辦單位：<br>
+        真理大學 ESG 智慧永續碳權交易研究中心<br>
+        真理大學企業管理學系
+      </div>
+      <div class="fmeta">
+        <span class="fx">報名截止：115 年 10 月 10 日</span>
+        <span class="fx">計畫指導兼顧問：丁煌裕 老師</span>
+      </div>
+      <div class="forg">
+        聯繫窗口： 黃柏凱 (分機：4452)、吳家琪 (分機：1695)
+      </div>
+    </div>
+    <div class="flinks">
+      <a href="#overview">計畫目標</a>
+      <a href="#tracks">雙軌架構</a>
+      <a href="#schedule">重要日程</a>
+      <a href="#pricing">證照補助</a>
+      <a href="#calculator">費用試算</a>
+      <a href="#benefits">實質效益</a>
+      <a href="#faq">常見問題</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScvyvppaFAF33b6rnO1Gc8GR7LsH6EkjyNx-lSoNVfYPRoGPw/viewform" target="_blank" rel="noopener">線上報名</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="fx">© 2026 真理大學 碳盤查實務與證照培訓計畫</span>
+    <span class="fx">本計畫由高等教育深耕計畫補助</span>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   1. 導航列滾動陰影 + 當前區塊高亮
+   ═══════════════════════════════════════════ */
+const nav = document.getElementById('nav');
+const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+const sections = [...document.querySelectorAll('section[id], header[id]')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach(s => spy.observe(s));
+
+/* ═══════════════════════════════════════════
+   2. 平滑捲動
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════
+   3. FAQ 手風琴（點標題列展開）
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ═══════════════════════════════════════════
+   4. 進場動畫
+   ═══════════════════════════════════════════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ═══════════════════════════════════════════
+   5. 報名連結（Google 表單）
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(a => {
+  a.setAttribute('target', '_blank');
+  a.setAttribute('rel', 'noopener');
+});
+
+/* ═══════════════════════════════════════════
+   6. 互動式計價計算器
+   ═══════════════════════════════════════════ */
+const calcForm = {
+  get role()     { return document.querySelector('input[name="calc-role"]:checked')?.value || ''; },
+  get exam()     { return document.querySelector('input[name="calc-exam"]:checked')?.value || ''; },
+  get practice() { return document.querySelector('input[name="calc-practice"]:checked')?.value || ''; }
+};
+
+function calcFee() {
+  const role = calcForm.role;
+  const exam = calcForm.exam;
+  const practice = calcForm.practice;
+  const practiceStep = document.getElementById('calc-practice-step');
+  const resultBox = document.getElementById('calc-result');
+  const amountEl = document.getElementById('result-amount');
+  const detailEl = document.getElementById('result-detail');
+
+  if (!role || !exam) { resultBox.style.display = 'none'; return; }
+
+  practiceStep.style.display = exam === 'yes' ? '' : 'none';
+
+  if (exam === 'no') {
+    resultBox.style.display = '';
+    amountEl.textContent = '免費';
+    amountEl.classList.add('free');
+    detailEl.textContent = '不參加證照考試者，實作與培訓課程皆無需付費。';
+    return;
+  }
+
+  if (practice === '') { resultBox.style.display = 'none'; return; }
+
+  resultBox.style.display = '';
+  const isStudent = role === '學生';
+
+  if (practice === 'yes') {
+    if (isStudent) {
+      amountEl.textContent = '免費';
+      amountEl.classList.add('free');
+      detailEl.textContent = '學生全程參與（實作 + 培訓 + 考試）享免費，限 15 個名額，依報名順序與參與程度遴選。';
+    } else {
+      amountEl.textContent = '新臺幣 4,000 元';
+      amountEl.classList.remove('free');
+      detailEl.textContent = '教職員全程參與（實作 + 培訓 + 考試）優惠價格。';
+    }
+  } else {
+    const fee = isStudent ? 5000 : 7000;
+    amountEl.textContent = `新臺幣 ${fee.toLocaleString('zh-TW')} 元`;
+    amountEl.classList.remove('free');
+    detailEl.textContent = '僅參加證照培訓與考試、未參加實作者，需支付全額考試費用。';
+  }
+}
+
+['calc-role', 'calc-exam', 'calc-practice'].forEach(name => {
+  document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+    r.addEventListener('change', calcFee);
+  });
+});
+</script>
+</body>
+</html>
